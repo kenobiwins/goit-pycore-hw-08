@@ -44,6 +44,7 @@ def main() -> None:
 
             match parsed_command:
                 case Command.EXIT | Command.CLOSE:
+                    book.serialize_data()
                     print(f"{Color.TITLE.value}Good bye!")
                     break
                 case Command.HELLO:

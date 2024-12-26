@@ -1,16 +1,19 @@
 from collections import UserDict
+from pathlib import Path
 
 from memento import Memento
 from models import Record
-from utils import BirthdayHelper
+from utils import BirthdayHelper, Serializer
 
 
 class AddressBook(UserDict):
     __instance = None
+    DATA_FILE = Path(__file__).parent / ".data" / "address_book.pkl"
 
     def __new__(cls, *args, **kwargs):
         if not cls.__instance:
             cls.__instance = super(AddressBook, cls).__new__(cls, *args, **kwargs)
+            cls.__instance._initialize_data()
         return cls.__instance
 
     def __str__(self):
@@ -19,6 +22,11 @@ class AddressBook(UserDict):
             if self.data
             else "The address book is empty."
         )
+    def _initialize_data(self) -> None:
+        self.data = Serializer.load(self.DATA_FILE) or {}
+        
+    def serialize_data(self) -> None:
+        Serializer.save(self.data, self.DATA_FILE)
 
     def add_record(self, record: Record)->None:
         self.data[record.name.value] = record

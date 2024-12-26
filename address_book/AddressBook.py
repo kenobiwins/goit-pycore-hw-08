@@ -13,8 +13,11 @@ class AddressBook(UserDict):
     def __new__(cls, *args, **kwargs):
         if not cls.__instance:
             cls.__instance = super(AddressBook, cls).__new__(cls, *args, **kwargs)
-            cls.__instance._initialize_data()
         return cls.__instance
+
+    def __init__(self):
+        super().__init__()
+        self._initialize_data()
 
     def __str__(self):
         return (

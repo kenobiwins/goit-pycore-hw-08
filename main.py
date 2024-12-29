@@ -26,6 +26,7 @@ def parse_input(user_input: str) -> Tuple[str, list[str]]:
 def parse_command(command: str) -> Command:
     return Command(command)
 
+
 def main() -> None:
     print(f"{Color.TITLE.value}Welcome to the assistant bot!")
     book = AddressBook()

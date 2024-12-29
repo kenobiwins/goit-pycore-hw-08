@@ -5,7 +5,9 @@ from .Command import Command
 
 class AddBirthdayCommand(Command):
 
-    def __init__(self, address_book: AddressBook, name: str, birthday:None | str=None) -> None:
+    def __init__(
+        self, address_book: AddressBook, name: str, birthday: None | str = None
+    ) -> None:
         self.address_book = address_book
         self.name = name
         self.birthday = birthday

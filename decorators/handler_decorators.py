@@ -19,6 +19,7 @@ def handle_input_error(func: Callable[..., str]) -> Callable[..., str]:
 
     return handler
 
+
 def command_error_handler(func: Callable[[str, Any], Any]) -> Callable[[str, Any], Any]:
     @wraps(func)
     def handler(command: str, *args: Any, **kwargs: Any) -> Any:

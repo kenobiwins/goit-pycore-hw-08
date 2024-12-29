@@ -11,7 +11,7 @@ class Serializer:
             file_path = Path(file_path)
             file_path.parent.mkdir(parents=True, exist_ok=True)
 
-            with open(file_path, 'wb') as file:
+            with open(file_path, "wb") as file:
                 pickle.dump(data, file)
             print(f"{Color.SUCCESS.value}Data successfully saved to {file_path}")
         except Exception as e:
@@ -25,7 +25,7 @@ class Serializer:
             if not file_path.exists():
                 raise FileNotFoundError(f"The file {file_path} does not exist.")
 
-            with open(file_path, 'rb') as file:
+            with open(file_path, "rb") as file:
                 data = pickle.load(file)
             print(f"{Color.SUCCESS.value}Data successfully loaded from {file_path}")
             return data

@@ -18,6 +18,6 @@ class BirthdayValidation(ValidationStrategy):
 
         try:
             datetime.strptime(value, BirthdayHelper.DATE_FORMAT)
-            return value 
+            return value
         except ValueError:
             raise ValueError("Invalid birthday: Date does not exist")

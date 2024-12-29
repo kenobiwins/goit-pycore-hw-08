@@ -25,19 +25,20 @@ class AddressBook(UserDict):
             if self.data
             else "The address book is empty."
         )
+
     def _initialize_data(self) -> None:
         self.data = Serializer.load(self.DATA_FILE) or {}
-        
+
     def serialize_data(self) -> None:
         Serializer.save(self.data, self.DATA_FILE)
 
-    def add_record(self, record: Record)->None:
+    def add_record(self, record: Record) -> None:
         self.data[record.name.value] = record
 
-    def find(self, name:str)->Record:
+    def find(self, name: str) -> Record:
         return self.data.get(name)
 
-    def delete(self, name:str)->None:
+    def delete(self, name: str) -> None:
         if name in self.data:
             del self.data[name]
         else:
@@ -49,16 +50,13 @@ class AddressBook(UserDict):
     def restore(self, memento: Memento) -> None:
         self.data = memento.get_state()
 
-
     def get_all_contacts_as_list(self) -> list[dict]:
         contacts_list = []
         for record in self.data.values():
             contact_dict = {
                 "name": record.name.value,
                 "phones": [phone.value for phone in record.phones],
-                "birthday": (
-                    record.birthday.value if record.birthday else None
-                ),
+                "birthday": (record.birthday.value if record.birthday else None),
             }
             contacts_list.append(contact_dict)
         return contacts_list

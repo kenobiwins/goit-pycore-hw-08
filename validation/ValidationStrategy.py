@@ -1,3 +1,3 @@
 class ValidationStrategy:
-    def validate(self, value:str) -> str:
+    def validate(self, value: str) -> str:
         raise NotImplementedError
